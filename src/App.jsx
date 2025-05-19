@@ -1,46 +1,27 @@
-import React, { useState } from "react";
-import "./index.css";
-import rohit from './assets/download.jpeg'; 
+import React, { useState } from 'react';
+import rohit from './assets/download.jpeg';
 
-const ProfileCard = ({ name, bio, initialBgColor }) => {
-  const [bgColor, setBgColor] = useState(initialBgColor);
-  const [hovered, setHovered] = useState(false);
+export default function Profile({ name, bio, inbgcolor }) {
+  const [bgcolor, setbgcolor] = useState(inbgcolor);
 
-  const handleMouseEnter = () => {
-    setHovered(true);
-    setBgColor("linear-gradient(135deg, #FFD700, #FFA07A)");
-  };
+  function mouseenter() {
+    setbgcolor("linear-gradient(135deg, #FFD700, #FFA07A)");
+  }
 
-  const handleMouseLeave = () => {
-    setHovered(false);
-    setBgColor(initialBgColor);
-  };
+  function mouseleave() {
+    setbgcolor(inbgcolor);
+  }
 
   return (
     <div
-      className={`profile-card ${hovered ? "hovered" : ""}`}
-      style={{ background: bgColor, color: hovered ? "#800000" : "#800000" }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className='profile-card'
+      style={{ background: bgcolor, color: '#333' }}
+      onMouseEnter={mouseenter}
+      onMouseLeave={mouseleave}
     >
-      <img src={rohit} alt={name} className="profile-pic" />
-      <h2 className="profile-name">{name}</h2>
-      <p className="profile-bio">{bio}</p>
+      <img src={rohit} alt={name} />
+      <h1>{name}</h1>
+      <p>{bio}</p>
     </div>
   );
-};
-
-const App = () => {
-  return (
-    <div className="app-container">
-      <ProfileCard
-        name="ROHIT SHARMA"
-        bio="Indian cricketer and captain of the Indian national team, known for his elegant batting style"
-        
-        initialBgColor="linear-gradient(135deg,rgb(128, 232, 255),rgb(255, 255, 255), rgb(112, 224, 255))" 
-      />
-    </div>
-  );
-};
-
-export default App;
+}
